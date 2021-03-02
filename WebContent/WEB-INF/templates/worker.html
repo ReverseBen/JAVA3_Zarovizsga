@@ -1,0 +1,113 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Worker</title>
+        <link rel="stylesheet" type="text/css" href="./static/main.css" />
+    </head>
+    <body>
+        <h1>Munkavállaló</h1>
+        <div class="table">
+            <table>
+                <tr>
+                    <td>Felhasználónév:</td>
+                    <td><span th:text="${username}"></span></td>
+                    <td><a th:href="@{/logout}">Logout</a></td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <br />
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dátum</th>
+                        <th>Munkaidő kezdete</th>
+                        <th>Ebédidő kezdete</th>
+                        <th>Ebédidő vége</th>
+                        <th>Munkaidő vége</th>
+                        <th>Napi össz</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="worktime : ${worktimes}">
+                        <td th:text="${worktime.date}">2021-03-01</td>
+                        <td th:text="${worktime.wstart}">08:00</td>
+                        <td th:text="${worktime.lstart}">12:30</td>
+                        <td th:text="${worktime.lend}">13:00;</td>
+                        <td th:text="${worktime.wend}">16:30</td>
+                        <td><span th:text="${worktime.workedminutes / 60}"></span>:<span th:text="${#numbers.formatDecimal(worktime.workedminutes % 60, 2, 0)}"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <hr />
+        <br />
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Havi ledolgozott óra</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span th:text="${monthlyWorkedMinutes / 60}"></span>:<span th:text="${#numbers.formatDecimal(monthlyWorkedMinutes % 60, 2, 0)}"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <hr />
+        <br />
+        <form th:action="@{/worker}" th:object="${view_edit}" method="POST">
+            <div class="form">
+                <table id="table">
+                    <tr id="trhidden">
+                        <td id="tdhidden"><input type="hidden" name="id" th:field="*{id}" th:value="*{id}" /></td>
+                        <td id="tdhidden"><input type="hidden" name="userid" th:field="*{userid}" th:value="*{userid}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Munkaidő kezdete:</td>
+                        <td>
+                            <select th:field="*{wstart}" name="wstart">
+                                <option th:each="t : ${times}" th:value="${t}" th:text="${t}"> </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ebédidő kezdete:</td>
+                        <td>
+                            <select th:field="*{lstart}" name="lstart">
+                                <option th:each="t : ${times}" th:value="${t}" th:text="${t}"> </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ebédidő vége:</td>
+                        <td>
+                            <select th:field="*{lend}" name="lend">
+                                <option th:each="t : ${times}" th:value="${t}" th:text="${t}"> </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Munkaidő vége:</td>
+                        <td>
+                            <select th:field="*{wend}" name="wend">
+                                <option th:each="t : ${times}" th:value="${t}" th:text="${t}"> </option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <div class="add">
+                    <tr>
+                        <td><input type="submit" value="Felvitel" /></td>
+                    </tr>
+                </div>
+            </div>          
+        </form>
+    </body>
+</html>

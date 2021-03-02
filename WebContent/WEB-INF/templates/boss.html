@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Admin Main</title>
+        <link rel="stylesheet" type="text/css" href="./static/main.css" />
+    </head>
+    <body>
+        <h1>Munkáltató - Main</h1>
+        <div class="table">
+            <table>
+                <tr>
+                    <td>Felhasználónév:</td>
+                    <td><span th:text="${username}"></span></td>
+                    <td><a th:href="@{/logout}">Logout</a></td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <br />    
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Alkalmazott lista</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td><a th:href="@{'/view?userid='+${user.id}}" th:text="${user.name}">Név</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+body {
+    font-family: Verdana;
+    background-color: #f3f3f3;
+}
+.form {
+    position: relative;
+    margin: 0 auto;
+    border: solid 2px black;
+    width: fit-content;
+}
+h1 {
+    text-align: center;
+    color: black;
+}
+.table {
+    position: relative;
+    margin: 0 auto;
+    border: solid 2px black;
+    width: max-content;
+}
+.add {
+    position: relative;
+    width: max-content;
+    margin: 0 auto;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+tr {
+    background-color: rgb(185, 185, 185);
+}
+td {
+    border: solid 2px black;
+    text-align: center;
+}
+th {
+    border: solid 2px black;
+    text-align: center;
+    width: fit-content;
+}
+input,
+select {
+    background-color: rgb(232, 235, 235);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+#back {
+    border: solid 2px;
+    padding: 2px 2px 2px 2px;
+}
+#tdhidden {
+    border: none;
+}
+#trhidden {
+    background-color: transparent;
+}
